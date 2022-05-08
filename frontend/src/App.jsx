@@ -1,14 +1,13 @@
 import GlobalStyles from './styles/GlobalStyles';
 
-import Menu from './components/Menu';
+import Routes from './routes';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <GlobalStyles />
-      <Menu />
-      <span>Hello World</span>
-    </div>
+      <Routes />
+    </>
   );
 }
 
