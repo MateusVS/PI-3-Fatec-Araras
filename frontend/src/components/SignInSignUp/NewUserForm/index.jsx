@@ -3,8 +3,9 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { TextField, Button, Grid } from '@mui/material';
+import { NotificationManager } from 'react-notifications';
 
-import { CustomLink, ErrorMsg } from './styles';
+import { CustomLink } from './styles';
 
 import SignInSignUpLogo from '../Logo';
 
@@ -25,34 +26,32 @@ function NewUserForm() {
     alert("submit")
   }
 
-  console.log(errors);
+  Object.values(errors).map((error) => NotificationManager.error(error.message, 'Error message', 5000));
 
   return (
-    <form onSubmit={handleSubmit(handleCreateUser)}>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: 500, width: 500 }}
-      >
-        <SignInSignUpLogo />
-        <TextField type="text" label="Name" variant="outlined" {...register("Name", {required: true, maxLength: 50})} sx={{ width: '75%', marginTop: 2 }} />
-        { errors.Name && <ErrorMsg>{ errors.Name.message }</ErrorMsg> }
-        <TextField type="email" label="E-mail" variant="outlined" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} sx={{ width: '75%', marginTop: 2 }} />
-        { errors.Email && <ErrorMsg>{ errors.Email.message }</ErrorMsg> }
-        <TextField type="password" label="Password" variant="outlined" {...register("Password", {required: true, minLength: 5, maxLength: 8})} sx={{ width: '75%', marginTop: 2 }} />
-        { errors.Password && <ErrorMsg>{ errors.Password.message }</ErrorMsg> }
-        <TextField type="password" label="Confirm Password" variant="outlined" {...register("ConfirmPassword", {required: true, minLength: 5, maxLength: 8})} sx={{ width: '75%', marginTop: 2 }} />
-        { errors.ConfirmPassword && <ErrorMsg>{ errors.ConfirmPassword.message }</ErrorMsg> }
-        <Button variant="contained" type="submit" color="success" size="large" sx={{ width: '75%', marginTop: 2 }}>
-          Create Account
-        </Button>
-        <br />
-        <h4>Already have an account? <CustomLink to="/login">Sign in →</CustomLink></h4>
-      </Grid>
-    </form>
+    <>
+      <form onSubmit={handleSubmit(handleCreateUser)}>
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: 500, width: 500 }}
+        >
+          <SignInSignUpLogo />
+          <TextField type="text" label="Name" variant="outlined" {...register("Name", {required: true, maxLength: 50})} sx={{ width: '75%', marginTop: 2 }} />
+          <TextField type="email" label="E-mail" variant="outlined" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} sx={{ width: '75%', marginTop: 2 }} />
+          <TextField type="password" label="Password" variant="outlined" {...register("Password", {required: true, minLength: 5, maxLength: 8})} sx={{ width: '75%', marginTop: 2 }} />
+          <TextField type="password" label="Confirm Password" variant="outlined" {...register("ConfirmPassword", {required: true, minLength: 5, maxLength: 8})} sx={{ width: '75%', marginTop: 2 }} />
+          <Button variant="contained" type="submit" color="success" size="large" sx={{ width: '75%', marginTop: 2 }}>
+            Create Account
+          </Button>
+          <br />
+          <h4>Already have an account? <CustomLink to="/login">Sign in →</CustomLink></h4>
+        </Grid>
+      </form>
+    </>
   );
 }
 

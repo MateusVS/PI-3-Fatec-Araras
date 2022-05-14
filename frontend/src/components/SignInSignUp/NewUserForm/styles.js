@@ -8,8 +8,3 @@ export const CustomLink = styled(Link)`
     color: red;
   }
 `;
-
-export const ErrorMsg = styled.span`
-  color: red;
-  font-size: 12px;
-`;
