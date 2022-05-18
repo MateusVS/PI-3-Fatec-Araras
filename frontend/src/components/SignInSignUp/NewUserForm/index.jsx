@@ -26,7 +26,7 @@ function NewUserForm() {
     alert("submit")
   }
 
-  Object.values(errors).map((error) => NotificationManager.error(error.message, 'Error message', 5000));
+  Object.values(errors).map((error) => NotificationManager.error(error.message, 'Error message', 2000));
 
   return (
     <>

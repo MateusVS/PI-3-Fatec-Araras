@@ -1,6 +1,20 @@
+import NavBar from '../../components/Navbar';
+import SearchBar from '../../components/SearchBar';
+
+import CardsContainer from '../../components/CardsContainer';
+
+import { Container } from './styles';
+
 function Home() {
   return (
-    <h1>Home Page</h1>
+    <>
+      <NavBar />
+      <Container>
+        <SearchBar />
+        <CardsContainer />
+        Home Page
+      </Container>
+    </>
   );
 }
 
