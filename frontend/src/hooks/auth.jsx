@@ -2,6 +2,8 @@ import { createContext, useState, useContext } from 'react';
 
 import api from '../services/api';
 
+import { NotificationManager } from 'react-notifications';
+
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
@@ -11,38 +13,21 @@ const AuthProvider = ({ children }) => {
     return !!isLogged;
   });
 
-  const SignIn = (email, password) => {
-    return api.post('/login', { email, password })
+  const SignIn = async (email, password) => {
+    await api.post('/usuarios/login', { email, password })
             .then((response) => {
-              console.log(response.data);
+              localStorage.setItem('@superhero:logged', 'true');
+              localStorage.setItem('@superhero:user_id', response.data.id);
+              setLogged(true);
             })
             .catch(function (error) {
-              console.log(error)
+              NotificationManager.error(error.message, 'Error', 2000);
             });
-
-    // useCallback(() => {
-    //   async function loadServices() {
-    //     await api.post('/login', { email, password})
-    //       .then(function (response) {
-    //         console.log(response.data);
-    //       })
-    //       .catch(function (error) {
-    //         console.log(error)
-    //       });
-    //   }
-    //   loadServices();
-    // }, [email, password]);
-
-    // if (email === 'mateusviniciussilva07@gmail.com' && password === '123') {
-    //   localStorage.setItem('@superhero:logged', 'true');
-    //   setLogged(true);
-    // } else {
-    //   alert('Senha ou usuário inválidos!');
-    // }
   }
 
   const SignOut = () => {
     localStorage.removeItem('@superhero:logged');
+    localStorage.removeItem('@superhero:user_id');
     setLogged(false);
   }
 

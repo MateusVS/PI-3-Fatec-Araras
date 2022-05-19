@@ -1,14 +1,13 @@
 import { Card as MUICard, CardHeader, CardMedia, CardContent } from '@mui/material';
 
-function Card () {
+function Card ({ name, image }) {
   return(
     <MUICard sx={{ maxWidth: 345 }}>
-      <CardHeader title="Teste" />
+      <CardHeader title={name} />
       <CardMedia
         component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        image={image}
+        alt={name}
       />
       <CardContent>
         <button>Veja Mais</button>
