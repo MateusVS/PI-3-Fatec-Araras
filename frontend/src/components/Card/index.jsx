@@ -1,9 +1,12 @@
-import { Card as MUICard, CardHeader, CardMedia, CardContent, Button } from '@mui/material';
+import { Card as MUICard, CardMedia, CardContent, Button } from '@mui/material';
+import { CardH } from './styles';
 
 function Card ({ name, image }) {
   return(
     <MUICard title={name} sx={{ maxWidth: 345, border: '1px solid red' }}>
-      <CardHeader title={name} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} />
+      <CardH>
+        {name}
+      </CardH>
       <CardMedia
         component="img"
         image={image}
