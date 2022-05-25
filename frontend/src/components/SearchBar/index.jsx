@@ -9,7 +9,7 @@ function SearchBar() {
   return (
     <Box sx={{ display: 'flex', width: '100vw', alignItems: 'center', justifyContent: 'center' }}>
       <SearchInput
-            id="outlined-adornment-amount"
+            id="superheroSearchBar"
             color='error'
             onChange={console.log('amount')}
             InputProps={{ endAdornment: icon }}

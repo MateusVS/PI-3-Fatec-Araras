@@ -5,4 +5,5 @@ export const Copyright = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 `;

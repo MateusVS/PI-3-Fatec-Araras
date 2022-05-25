@@ -19,7 +19,7 @@ function NavBar() {
             SuperHeroes
           </Typography>
           <div>
-            <Img src={Loggoff} alt="Quit" onClick={SignOut} />
+            <Img src={Loggoff} alt="Quit" onClick={SignOut} title="Exit" />
           </div>
         </Toolbar>
       </Container>

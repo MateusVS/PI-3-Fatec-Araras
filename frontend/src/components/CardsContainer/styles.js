@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  text-align: center;
   margin: auto;
   width: 95vw;
 `;
@@ -12,5 +13,5 @@ export const LoadError = styled.div`
   align-items: center;
   width: 100vw;
   font-size: 25px;
-  font-weight: bold
+  font-weight: bold;
 `;
