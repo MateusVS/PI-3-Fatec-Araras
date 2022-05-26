@@ -13,7 +13,7 @@ function CardsContainer() {
 
   useEffect(() => {
     async function loadServices() {
-      await api.get('/superherois')
+      await api.get('/superheroes')
         .then(function (response) {
           setCardsList(response.data);
         })
