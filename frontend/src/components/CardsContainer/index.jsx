@@ -9,7 +9,7 @@ import Modal from '../SuperHeroModal';
 
 function CardsContainer({ cardsList, isLoading }) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
 
   return (
@@ -20,7 +20,7 @@ function CardsContainer({ cardsList, isLoading }) {
       <Grid container spacing={2}>
         { cardsList.length > 0 ? cardsList.map(card => (
           <Grid item lg={2} md={4} sm={6} xs={12} key={card.id}>
-            <Card name={card.name} image={card.images.lg} handleOpen={handleOpen} />
+            <Card name={card.name} image={card.images.lg} handleOpen={() => console.log("teste"))} />
           </Grid>
         )) : (!isLoading && <LoadError>An error occurred while loading the page. Please try again!</LoadError>) }
       </Grid>

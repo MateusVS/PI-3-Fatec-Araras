@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   });
 
   const SignIn = async (email, password) => {
-    await api.post('/usuarios/login', { email, password })
+    await api.post('/users/login', { email, password })
             .then((response) => {
               localStorage.setItem('@superhero:logged', 'true');
               localStorage.setItem('@superhero:user_id', response.data.id);

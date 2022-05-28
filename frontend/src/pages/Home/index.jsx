@@ -18,7 +18,7 @@ function Home() {
 
   useEffect(() => {
     async function loadServices() {
-      await api.get('/superherois')
+      await api.get('/superheroes')
         .then(function (response) {
           setCardsList(response.data);
           setOriginalCardsList(response.data);
@@ -34,7 +34,7 @@ function Home() {
   useEffect(() => {}, [cardsList]);
 
   const handleSearch = (e) => {
-    let newCardList = OriginalcardsList.filter((card) => card.name.includes(e.target.value));
+    let newCardList = OriginalcardsList.filter((card) => card.name.toUpperCase().includes(e.target.value.toUpperCase()));
     setCardsList(newCardList);
   }
 

@@ -29,7 +29,7 @@ function NewUserForm() {
   const navigate = useNavigate();
 
   const handleCreateUser = async({ Name, Email, Password, ConfirmPassword }) => {
-    await api.post('/usuarios', { name: Name, email: Email, password: Password, repeatPassword: ConfirmPassword })
+    await api.post('/users', { name: Name, email: Email, password: Password, repeatPassword: ConfirmPassword })
       .then((response) => {
         NotificationManager.success('Account Created Successfully', 'Success');
         navigate('/login');
