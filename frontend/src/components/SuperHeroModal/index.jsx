@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import api from '../../services/api';
-import { Box, Typography, Modal } from '@mui/material';
 
 import { NotificationManager } from 'react-notifications';
+import { Box, Typography, Modal } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -17,19 +17,20 @@ const style = {
   p: 4,
 };
 
-function SuperHeroModal({open, handleClose}) {
-  const [superhero, setSuperhero] = useState();
+function SuperHeroModal({open, heroId, handleClose}) {
+  const [superhero, setSuperhero] = useState({});
 
   useEffect(() => {
-    api.get('/')
+    if (heroId !== 0) {
+      api.get(`/superheroes/${heroId}`)
       .then(function (response) {
-
+        setSuperhero(response.data);
       })
       .catch(function (error) {
         NotificationManager.error(error.message, 'Error message', 2000);
       });
-    setOpen(true);
-  }, []);
+    }
+  }, [heroId]);
 
   return (
     <Modal
@@ -39,11 +40,41 @@ function SuperHeroModal({open, handleClose}) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
+        { superhero.hasOwnProperty("images") ? <img src={superhero.images.sm} alt={superhero.name} /> : "" }
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
+          {superhero.name}
         </Typography>
+        {/* <span>{superhero.appearance.gender}</span> */}
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          { superhero.hasOwnProperty("biography") ?
+            <h3>Biography</h3>
+
+            : ""
+          }
+
+          { superhero.hasOwnProperty("appearance") ?
+            <h3>Appearance</h3>
+
+            : ""
+          }
+
+          { superhero.hasOwnProperty("powerstats") ?
+            <h3>Powerstats</h3>
+
+            : ""
+          }
+
+          { superhero.hasOwnProperty("work") ?
+            <h3>Work</h3>
+
+            : ""
+          }
+
+          { superhero.hasOwnProperty("connections") ?
+            <h3>Connections</h3>
+
+            : ""
+          }
         </Typography>
       </Box>
     </Modal>
