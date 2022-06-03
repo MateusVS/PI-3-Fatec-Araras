@@ -13,7 +13,7 @@ function Card ({ name, image, id, handleOpen }) {
         alt={name}
       />
       <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button variant="outlined" color="error" type="submit" size="large" onClick={() => handleOpen(id)} sx={{ width: '75%', marginTop: 5 }}>See More</Button>
+        <Button variant="outlined" color="error" type="submit" size="large" onClick={() => handleOpen(id)} sx={{ width: '75%', marginTop: 5, color: '#000', border: '1px solid #000', fontSize: '19.2px', lineHeight: '50px' }}>See More</Button>
       </CardContent>
     </MUICard>
   );

@@ -24,10 +24,6 @@ export default createGlobalStyle`
   }
   button {
     cursor: pointer;
-    color: #000 !important;
-    border: 1px solid #000 !important;
-    font-size: 19.2px !important;
-    line-height: 50px !important;
   }
   ::selection {
     background-color: red;
