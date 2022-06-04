@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import AVENGEANCEHEROICAVENGER from '../assets/fonts/AVENGEANCEHEROICAVENGER.ttf';
+import AVENGEANCEHEROICAVENGER from '../assets/fonts/AVENGEANCEHEROICAVENGER.otf';
 
 export default createGlobalStyle`
   @font-face {

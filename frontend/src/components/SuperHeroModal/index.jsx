@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import api from '../../services/api';
 
 import { NotificationManager } from 'react-notifications';
-import { Box, Typography, Modal, Grid } from '@mui/material';
+import { Box, Typography, Modal, Grid, Button } from '@mui/material';
 
-import { P, Span, Img } from './styles';
+import { Span, Img } from './styles';
 
 const style = {
   position: 'absolute',
@@ -16,23 +16,23 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  overflowY:'scroll',
-  height:'95%',
-  display:'block'
+  overflowY: 'scroll',
+  height: '95%',
+  display: 'block'
 };
 
-function SuperHeroModal({open, heroId, handleClose}) {
+function SuperHeroModal({ open, heroId, handleClose }) {
   const [superhero, setSuperhero] = useState({});
 
   useEffect(() => {
     if (heroId !== 0) {
       api.get(`/superheroes/${heroId}`)
-      .then(function (response) {
-        setSuperhero(response.data);
-      })
-      .catch(function (error) {
-        NotificationManager.error(error.message, 'Error message', 2000);
-      });
+        .then(function (response) {
+          setSuperhero(response.data);
+        })
+        .catch(function (error) {
+          NotificationManager.error(error.message, 'Error message', 2000);
+        });
     }
   }, [heroId]);
 
@@ -44,99 +44,104 @@ function SuperHeroModal({open, heroId, handleClose}) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Grid container spacing={2}>
+        <Grid container justifyContent={'flex-end'} spacing={2}>
+          <Button onClick={handleClose} style={{backgroundColor: 'red', color: 'white', fontSize: '1.1rem'}}>Close</Button>
+        </Grid>
+        <Grid container justifyContent={'space-evenly'} spacing={2}>
           <Grid item lg={6} md={8} sm={10}>
-            { superhero.hasOwnProperty("images") ? <Img src={superhero.images.lg} alt={superhero.name} /> : "" }
+            {superhero.hasOwnProperty("images") ? <Img src={superhero.images.lg} alt={superhero.name} style={{maxHeight: '600px'}} /> : ""}
           </Grid>
-          <Grid item lg={4} md={3} sm={10}>
-            <Typography id="modal-modal-title" variant="h4" component="h2">
+          <Grid item lg={6} md={3} sm={10}>
+            <Typography id="modal-modal-title" textAlign={'center'} variant="h4" component="h2">
               {superhero.name}
             </Typography>
 
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <P>
-                { superhero.hasOwnProperty("biography") ?
-                  <>
-                    <h3>Biography</h3>
-                    {
-                      Object.entries(superhero.biography).map((value) => (
-                        <>
-                          <Span>{ value[0] }: { Array.isArray(value[1]) ? value[1][1] : value[1] } </Span>
-                          <br />
-                        </>
-                      ))
-                    }
-                  </>
-                  : ""
-                }
-              </P>
-              <P>
-                { superhero.hasOwnProperty("appearance") ?
-                  <>
-                    <h3>Appearance</h3>
-                    {
-                      Object.entries(superhero.appearance).map((value) => (
-                        <>
-                          <Span>{ value[0] }: { Array.isArray(value[1]) ? value[1][1] : value[1] } </Span>
-                          <br />
-                        </>
-                      ))
-                    }
-                  </>
-                  : ""
-                }
-              </P>
-              <P>
-                { superhero.hasOwnProperty("powerstats") ?
-                  <>
-                    <h3>Powerstats</h3>
-                    {
-                      Object.entries(superhero.powerstats).map((value) => (
-                        <>
-                          <Span>{ value[0] }: { value[1] } </Span>
-                          <br />
-                        </>
-                      ))
-                    }
-                  </>              
-                  : ""
-                }
-              </P>
-              <P>
-                { superhero.hasOwnProperty("work") ?
-                  <>
-                    <h3>Work</h3>
-                    {
-                      Object.entries(superhero.work).map((value) => (
-                        <>
-                          <Span>{ value[0] }: { value[1] } </Span>
-                          <br />
-                        </>
-                      ))
-                    }
-                  </>
-                  : ""
-                }
-              </P>
-              <P>
-                { superhero.hasOwnProperty("connections") ?
-                  <>            
-                    <h3>Connections</h3>
-                    {
-                      Object.entries(superhero.connections).map((value) => (
-                        <>
-                          <Span>{ value[0] }: { value[1] } </Span>
-                          <br />
-                        </>
-                      ))
-                    }
-                  </>
-                  : ""
-                }
-              </P>
+              <Grid container justifyContent={'space-between'} spacing={2}>
+                <Grid item lg={7} fontSize={'1.1rem'}>
+                  {superhero.hasOwnProperty("biography") ?
+                    <>
+                      <h2>Biography</h2>
+                      {
+                        Object.entries(superhero.biography).map((value) => (
+                          <>
+                            <Span>{value[0]}: {Array.isArray(value[1]) ? <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1][1]}</span> : <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> } </Span>
+                            <br />
+                          </>
+                        ))
+                      }
+                    </>
+                    : ""
+                  }
+                </Grid>
+                <Grid item lg={5} fontSize={'1.1rem'}>
+                  {superhero.hasOwnProperty("appearance") ?
+                    <>
+                      <h2>Appearance</h2>
+                      {
+                        Object.entries(superhero.appearance).map((value) => (
+                          <>
+                            <Span>{value[0]}: {Array.isArray(value[1]) ? <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1][1]}</span> : <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span>} </Span>
+                            <br />
+                          </>
+                        ))
+                      }
+                    </>
+                    : ""
+                  }
+                </Grid>
+                <Grid item lg={7} fontSize={'1.1rem'}>
+                  {superhero.hasOwnProperty("powerstats") ?
+                    <>
+                      <h2>Powerstats</h2>
+                      {
+                        Object.entries(superhero.powerstats).map((value) => (
+                          <>
+                            <Span>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
+                            <br />
+                          </>
+                        ))
+                      }
+                    </>
+                    : ""
+                  }
+                </Grid>
+                <Grid item lg={5} fontSize={'1.1rem'}>
+                  {superhero.hasOwnProperty("work") ?
+                    <>
+                      <h2>Work</h2>
+                      {
+                        Object.entries(superhero.work).map((value) => (
+                          <>
+                            <Span>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
+                            <br />
+                          </>
+                        ))
+                      }
+                    </>
+                    : ""
+                  }
+                </Grid>
+                <Grid item lg={10} fontSize={'1.1rem'}>
+                  {superhero.hasOwnProperty("connections") ?
+                    <>
+                      <h2>Connections</h2>
+                      {
+                        Object.entries(superhero.connections).map((value) => (
+                          <>
+                            <Span>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
+                            <br />
+                          </>
+                        ))
+                      }
+                    </>
+                    : ""
+                  }
+                </Grid>
+              </Grid>
             </Typography>
           </Grid>
-        </Grid>        
+        </Grid>
       </Box>
     </Modal>
   );
