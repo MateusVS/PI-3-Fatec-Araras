@@ -8,6 +8,7 @@ import NavBar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import CardsContainer from '../../components/CardsContainer';
 import Footer from '../../components/footer';
+import ActionButton from '../../components/ActionButton';
 
 import { Container } from './styles';
 
@@ -45,6 +46,7 @@ function Home() {
         <SearchBar searchFunction={handleSearch} />
         <CardsContainer cardsList={cardsList} isLoading={isLoading} />
       </Container>
+      <ActionButton />
       <Footer />
     </>
   );
