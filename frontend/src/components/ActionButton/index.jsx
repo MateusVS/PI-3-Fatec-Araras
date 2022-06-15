@@ -5,7 +5,7 @@ import { Add } from '@mui/icons-material';
 
 import RegistrationModal from '../RegistrationModal';
 
-function ActionButton() {
+function ActionButton({ cardsList }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -24,7 +24,7 @@ function ActionButton() {
           <Add />
         </Fab>
       </Box>
-      <RegistrationModal open={open} handleOpen={handleOpen} />
+      <RegistrationModal open={open} cardsList={cardsList} handleOpen={handleOpen} />
     </>
   );
 }

@@ -46,7 +46,7 @@ function Home() {
         <SearchBar searchFunction={handleSearch} />
         <CardsContainer cardsList={cardsList} isLoading={isLoading} />
       </Container>
-      <ActionButton />
+      <ActionButton cardsList={cardsList} />
       <Footer />
     </>
   );

@@ -56,7 +56,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
               {superhero.name}
             </Typography>
 
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Grid id="modal-modal-description" sx={{ mt: 2 }}>
               <Grid container justifyContent={'space-between'} spacing={2}>
                 <Grid item lg={7} fontSize={'1.1rem'}>
                   {superhero.hasOwnProperty("biography") ?
@@ -65,7 +65,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
                       {
                         Object.entries(superhero.biography).map((value) => (
                           <>
-                            <Span>{value[0]}: {Array.isArray(value[1]) ? <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1][1]}</span> : <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> } </Span>
+                            <Span key={value[0] + value[1]}>{value[0]}: {Array.isArray(value[1]) ? <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1][1]}</span> : <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> } </Span>
                             <br />
                           </>
                         ))
@@ -81,7 +81,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
                       {
                         Object.entries(superhero.appearance).map((value) => (
                           <>
-                            <Span>{value[0]}: {Array.isArray(value[1]) ? <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1][1]}</span> : <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span>} </Span>
+                            <Span key={value[0] + value[1]}>{value[0]}: {Array.isArray(value[1]) ? <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1][1]}</span> : <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span>} </Span>
                             <br />
                           </>
                         ))
@@ -97,7 +97,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
                       {
                         Object.entries(superhero.powerstats).map((value) => (
                           <>
-                            <Span>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
+                            <Span key={value[0] + value[1]}>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
                             <br />
                           </>
                         ))
@@ -113,7 +113,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
                       {
                         Object.entries(superhero.work).map((value) => (
                           <>
-                            <Span>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
+                            <Span key={value[0] + value[1]}>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
                             <br />
                           </>
                         ))
@@ -129,7 +129,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
                       {
                         Object.entries(superhero.connections).map((value) => (
                           <>
-                            <Span>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
+                            <Span key={value[0] + value[1]}>{value[0]}: <span style={{color: 'rgba(0, 0, 0, 0.5)'}}>{value[1]}</span> </Span>
                             <br />
                           </>
                         ))
@@ -139,7 +139,7 @@ function SuperHeroModal({ open, heroId, handleClose }) {
                   }
                 </Grid>
               </Grid>
-            </Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Box>
