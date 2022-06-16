@@ -6,6 +6,7 @@ import { TextField, Button, Grid } from '@mui/material';
 import { NotificationManager } from 'react-notifications';
 
 import { CustomLink } from './styles';
+import { TextAbout } from './styles';
 
 import SignInSignUpLogo from '../Logo';
 
@@ -40,6 +41,11 @@ function LoginForm() {
         justifyContent="center"
         style={{ minHeight: 500, width: 500 }}
       >
+        <TextAbout>
+          Super Heroes is a site for users looking for entertainment options on the Web and will provide the
+          possibility to consult your own personalized Heroes with the differential of merging two or more
+          of your favorite Heroes.
+        </TextAbout>
         <SignInSignUpLogo />
         <TextField id="email" label="E-mail" variant="outlined" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} sx={{ width: '75%', marginTop: 2 }} />
         <TextField type="password" label="Password" variant="outlined" {...register("Password", {required: true })} sx={{ width: '75%', marginTop: 2 }} />

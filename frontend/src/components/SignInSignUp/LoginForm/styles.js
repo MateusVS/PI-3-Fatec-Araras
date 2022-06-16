@@ -8,3 +8,9 @@ export const CustomLink = styled(Link)`
     color: red;
   }
 `;
+
+export const TextAbout = styled.p`
+  margin: 0 20px;
+  text-align: center;
+  font-size: 1.1em;
+`;
