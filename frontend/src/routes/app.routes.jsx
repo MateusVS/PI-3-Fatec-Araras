@@ -7,6 +7,7 @@ function AppRoutes() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/*' element={<Home />} />
+      <Route path='/custom-heroes' element={<Home />} />
     </Routes>
   );
 }

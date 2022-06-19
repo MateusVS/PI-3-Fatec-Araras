@@ -19,14 +19,25 @@ function Home() {
 
   useEffect(() => {
     async function loadServices() {
-      await api.get('/superheroes')
-        .then(function (response) {
-          setCardsList(response.data);
-          setOriginalCardsList(response.data);
-        })
-        .catch(function (error) {
-          NotificationManager.error(error.message, 'Error message', 2000);
-        });
+      if (window.location.href.toString().includes('/custom-heroes')) {
+        await api.get(`/users/${localStorage.getItem('@superhero:user_id')}`)
+          .then(function (response) {
+            setCardsList(response.data);
+            setOriginalCardsList(response.data);
+          })
+          .catch(function (error) {
+            NotificationManager.error(error.message, 'Error message', 2000);
+          });
+      } else {
+        await api.get('/superheroes')
+          .then(function (response) {
+            setCardsList(response.data);
+            setOriginalCardsList(response.data);
+          })
+          .catch(function (error) {
+            NotificationManager.error(error.message, 'Error message', 2000);
+          });
+      }
       setIsLoading(false);
     }
     loadServices();
@@ -35,7 +46,10 @@ function Home() {
   useEffect(() => {}, [cardsList]);
 
   const handleSearch = (e) => {
-    let newCardList = OriginalcardsList.filter((card) => card.name.toUpperCase().includes(e.target.value.toUpperCase()));
+    let newCardList = window.location.href.toString().includes('/custom-heroes') ?
+                      OriginalcardsList.filter((card) => card.fullName.toUpperCase().includes(e.target.value.toUpperCase())) :
+                      OriginalcardsList.filter((card) => card.name.toUpperCase().includes(e.target.value.toUpperCase()));
+
     setCardsList(newCardList);
   }
 

@@ -25,7 +25,9 @@ function CardsContainer({ cardsList, isLoading }) {
       <Grid container spacing={2}>
         { cardsList.length > 0 ? cardsList.map(card => (
           <Grid item lg={2} md={4} sm={6} xs={12} key={card.id}>
-            <Card name={card.name} image={card.images.lg} id={card.id} handleOpen={handleOpen} />
+            { window.location.href.toString().includes('/custom-heroes') ?
+              <Card name={card.fullName} image={card.image} id={card.id} handleOpen={handleOpen} /> : <Card name={card.name} image={card.images.lg} id={card.id} handleOpen={handleOpen} />
+            }
           </Grid>
         )) : (!isLoading && <LoadError>An error occurred while loading the page. Please try again!</LoadError>) }
       </Grid>

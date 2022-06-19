@@ -16,7 +16,7 @@ const style = {
   display:'block'
 };
 
-function RegistrationModal({ open, handleOpen }) {
+function RegistrationModal({ open, cardsList, handleOpen }) {
   return (
     <Modal
       open={open}
@@ -31,7 +31,7 @@ function RegistrationModal({ open, handleOpen }) {
           </Grid>
           <br/>
           <Grid item lg={12}>
-            <RegistrationForm />
+            <RegistrationForm cardsList={cardsList} />
           </Grid>
         </Grid>
       </Box>
