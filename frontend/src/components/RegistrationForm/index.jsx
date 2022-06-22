@@ -31,7 +31,6 @@ function RegistrationForm({ cardsList }) {
 
   const handleCreateHero = async(prop) => {
     prop.image = newHeroImage;
-
     await api.post(`/users/${localStorage.getItem('@superhero:user_id')}/superheroescustom`, prop)
       .then((response) => {
         NotificationManager.success('SuperHero Created Successfully', 'Success');
