@@ -5,6 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import api from '../../services/api';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Grid, TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { NotificationManager } from 'react-notifications';
 
@@ -18,6 +20,8 @@ function RegistrationForm({ cardsList }) {
   const [newHeroImage, setNewHeroImage] = useState('');
   const [imageHero1, setImageHero1] = useState('');
   //const [imageHero2, setImageHero2] = useState('');
+
+  const navigate = useNavigate();
 
   const changeImg1 = (e) => {
     alert("Mudou")
@@ -34,6 +38,7 @@ function RegistrationForm({ cardsList }) {
     await api.post(`/users/${localStorage.getItem('@superhero:user_id')}/superheroescustom`, prop)
       .then((response) => {
         NotificationManager.success('SuperHero Created Successfully', 'Success');
+        navigate('/custom-heroes');
       })
       .catch(function (error) {
         NotificationManager.error(error.message, 'Error', 2000);

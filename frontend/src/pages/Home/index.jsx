@@ -41,7 +41,7 @@ function Home() {
       setIsLoading(false);
     }
     loadServices();
-  }, []);
+  }, [window.location.href.toString()]);
 
   useEffect(() => {}, [cardsList]);
 

@@ -7,12 +7,8 @@ import { Img, CustomLink } from './styles';
 
 import { useAuth } from '../../hooks/auth';
 
-import { useNavigate } from 'react-router-dom';
-
 function NavBar() {
   const { SignOut } = useAuth();
-
-  const navigate = useNavigate();
 
   return (
     <AppBar position="static" sx={{ bgcolor: "red" }}>
